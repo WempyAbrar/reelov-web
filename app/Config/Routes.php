@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index', ['filter' => 'auth']);
+$routes->get('/', 'Home::index');
 
 $routes->get('login', 'AuthController::login');
 $routes->post('login', 'AuthController::login');
@@ -18,6 +18,11 @@ $routes->group('produk', ['filter' => 'auth'], function ($routes) {
     $routes->get('delete/(:any)', 'ProdukController::delete/$1');
     $routes->get('download', 'ProdukController::download');
 });
+
+$routes->get('profil', 'ProfilController::index');
+
+
+$routes->get('kontak', 'KontakController::index');
 
 $routes->group('keranjang', ['filter' => 'auth'], function ($routes) {
     $routes->get('', 'TransaksiController::index');

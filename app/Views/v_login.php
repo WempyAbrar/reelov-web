@@ -21,7 +21,7 @@ $password = [
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
                   <img src="<?php echo base_url() ?>NiceAdmin/assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">TokoWinner</span>
+                  <span class="d-none d-lg-block text-light">Reelov</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -72,7 +72,7 @@ $password = [
                 </div>
               </div>
 
-              <div class="credits">
+              <div class="credits text-light">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->

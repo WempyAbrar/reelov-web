@@ -10,10 +10,11 @@ if (session()->getFlashData('success')) {
 <?php
 }
 ?>
+
 <!-- Table with stripped rows -->
 <div class="row">
     <?php foreach ($product as $key => $item) : ?>
-        <div class="col-lg-6">
+        <div class="col-md-4 mb-3">
             <?= form_open('keranjang') ?>
             <?php
             echo form_hidden('id', $item['id']);
@@ -21,12 +22,15 @@ if (session()->getFlashData('success')) {
             echo form_hidden('harga', $item['harga']);
             echo form_hidden('foto', $item['foto']);
             ?>
-            <div class="card">
+            <div class="card h-100">
+                <img src="<?php echo base_url() . "img/" . $item['foto'] ?>" class="card-img-top" style="max-height:300px; object-fit:cover" alt="...">
                 <div class="card-body">
-                    <img src="<?php echo base_url() . "img/" . $item['foto'] ?>" alt="..." width="300px">
-                    <h5 class="card-title"><?php echo $item['nama'] ?><br><?php echo number_to_currency($item['harga'], 'IDR') ?></h5>
-                    <button type="submit" class="btn btn-info rounded-pill">Beli</button>
+                    <h5 class="card-title"><?php echo $item['nama'] ?></h5>
+                    <p class="mb-1"><strong>Harga: </strong><?php echo number_to_currency($item['harga'], 'IDR') ?></p>
+                    <p class="mb-1"><strong>Kontak: </strong></p>
+                    <p class="mb-1"><strong>Domisili: </strong></p>
                 </div>
+                <div class="card-footer"></div>
             </div>
             <?= form_close() ?>
         </div>

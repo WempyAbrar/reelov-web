@@ -1,34 +1,80 @@
   <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar bg-danger-subtle">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link <?php echo (uri_string() == '') ? "" : "collapsed" ?>" href="/">
-          <i class="bi bi-grid"></i>
-          <span>Home</span>
+        <a class="nav-link bg-danger-subtle <?php echo (uri_string() == '') ? "" : "collapsed" ?>" data-bs-target="#components-nav" data-bs-toggle="collapse" href="/">
+          <i class="bi bi-handbag"></i>
+          <span>Beranda</span>
+          <i class="bi bi-chevron-down ms-auto"></i>
         </a>
+        <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/">
+              <i class="bi bi-circle"></i><span>Pakaian</span>
+            </a>
+          </li>
+          <li>
+            <a class="active" href="/">
+              <i class="bi bi-circle"></i><span>Elektronik</span>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <i class="bi bi-circle"></i><span>Aksesoris</span>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <i class="bi bi-circle"></i><span>Buku</span>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <i class="bi bi-circle"></i><span>Peralatan Rumah</span>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <i class="bi bi-circle"></i><span>Lainnya</span>
+            </a>
+          </li>
+        </ul>
       </li><!-- End Home Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link <?php echo (uri_string() == 'keranjang') ? "" : "collapsed" ?>" href="keranjang">
-          <i class="bi bi-cart-check"></i>
-          <span>Keranjang</span>
-        </a>
-      </li><!-- End Keranjang Nav -->
+      <?php
+      if (!session()->has('isLoggedIn')) {
+      ?>
+        <li class="nav-item">
+          <a class="nav-link bg-danger-subtle <?php echo (uri_string() == 'login') ? "" : "collapsed" ?>" href="login">
+            <i class="bi bi-box-arrow-in-right"></i>
+            <span>Profil (Log in)</span>
+          </a>
+        </li>
+      <?php
+      }
+      ?>
 
       <?php
       if (session()->get('role') == 'admin') {
       ?>
         <li class="nav-item">
-          <a class="nav-link <?php echo (uri_string() == 'produk') ? "" : "collapsed" ?>" href="produk">
-            <i class="bi bi-receipt"></i>
-            <span>Produk</span>
+          <a class="nav-link bg-danger-subtle <?php echo (uri_string() == 'profil') ? "" : "collapsed" ?>" href="profil">
+            <i class="bi bi-person"></i>
+            <span>Profil</span>
           </a>
         </li><!-- End Produk Nav -->
       <?php
       }
       ?>
+
+      <li class="nav-item">
+          <a class="nav-link bg-danger-subtle <?php echo (uri_string() == 'kontak') ? "" : "collapsed" ?>" href="kontak">
+            <i class="bi bi-envelope"></i>
+            <span>Kontak Kami</span>
+          </a>
+        </li>
 
     </ul>
 

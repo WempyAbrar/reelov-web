@@ -1231,3 +1231,18 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+/*--------------------------------------------------------------
+# Wave border
+--------------------------------------------------------------*/
+.wavy {
+  background-color: #fff;
+
+  --mask:
+    radial-gradient(20.13px at 50% 28.18px,#000 99%,#0000 101%) calc(50% - 32.2px) 0/64.4px 51% repeat-x,
+    radial-gradient(20.13px at 50% -12.08px,#0000 99%,#000 101%) 50% 16.1px/64.4px calc(51% - 16.1px) repeat-x,
+    radial-gradient(20.13px at 50% calc(100% - 28.18px),#000 99%,#0000 101%) calc(50% - 32.2px) 100%/64.4px 51% repeat-x,
+    radial-gradient(20.13px at 50% calc(100% + 12.08px),#0000 99%,#000 101%) 50% calc(100% - 16.1px)/64.4px calc(51% - 16.1px) repeat-x;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
+}
