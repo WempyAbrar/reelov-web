@@ -77,8 +77,7 @@ if(uri_string()!=""){
             <br>
             <br>
             <br>
-            <div class="card-body" style="background-color: #fffff0">
-                
+            <div class="card-body" style="background-color: #fffff0">   
                 <?= $this->renderSection('content') ?>
             </div>
           </div>
@@ -88,6 +87,8 @@ if(uri_string()!=""){
     </section>
 
   </main><!-- End #main -->
+
+  <?= $this->renderSection('modals') ?>
 
   <?= $this->include('components/footer') ?>
 

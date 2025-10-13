@@ -28,8 +28,10 @@ class ProdukController extends BaseController
 
         $dataForm = [
             'nama' => $this->request->getPost('nama'),
+            'kategori' => $this->request->getPost('kategori'),
+            'deskripsi' => $this->request->getPost('deskripsi'),
             'harga' => $this->request->getPost('harga'),
-            'jumlah' => $this->request->getPost('jumlah'),
+            'kontak' => $this->request->getPost('kontak'),
             'created_at' => date("Y-m-d H:i:s")
         ];
 
@@ -50,8 +52,10 @@ class ProdukController extends BaseController
 
         $dataForm = [
             'nama' => $this->request->getPost('nama'),
+            'kategori' => $this->request->getPost('kategori'),
+            'deskripsi' => $this->request->getPost('deskripsi'),
             'harga' => $this->request->getPost('harga'),
-            'jumlah' => $this->request->getPost('jumlah'),
+            'kontak' => $this->request->getPost('kontak'),
             'updated_at' => date("Y-m-d H:i:s")
         ];
 
@@ -87,7 +91,7 @@ class ProdukController extends BaseController
         return redirect('produk')->with('success', 'Data Berhasil Dihapus');
     }
 
-    public function download()
+    /*public function download()
     {
 		//get data from database
         $product = $this->product->findAll();
@@ -112,5 +116,5 @@ class ProdukController extends BaseController
 
         // output the generated pdf
         $dompdf->stream($filename);
-    }
+    }*/
 }

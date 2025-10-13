@@ -57,7 +57,7 @@
       ?>
 
       <?php
-      if (session()->get('role') == 'admin') {
+      if (session()->has('isLoggedIn')) {
       ?>
         <li class="nav-item">
           <a class="nav-link bg-danger-subtle <?php echo (uri_string() == 'profil') ? "" : "collapsed" ?>" href="profil">

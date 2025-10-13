@@ -16,11 +16,15 @@ $routes->group('produk', ['filter' => 'auth'], function ($routes) {
     $routes->post('', 'ProdukController::create');
     $routes->post('edit/(:any)', 'ProdukController::edit/$1');
     $routes->get('delete/(:any)', 'ProdukController::delete/$1');
-    $routes->get('download', 'ProdukController::download');
+    //$routes->get('download', 'ProdukController::download');
 });
 
-$routes->get('profil', 'ProfilController::index');
-
+$routes->group('profil', ['filter' => 'auth'], function ($routes) {
+    $routes->get('', 'ProfilController::index');
+    $routes->post('', 'ProdukController::create');
+    $routes->post('edit/(:any)', 'ProdukController::edit/$1');
+    $routes->get('delete/(:any)', 'ProdukController::delete/$1');
+});
 
 $routes->get('kontak', 'KontakController::index');
 

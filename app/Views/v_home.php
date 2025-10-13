@@ -11,6 +11,25 @@ if (session()->getFlashData('success')) {
 }
 ?>
 
+<div class="search-bar">
+    <form method="get" action="">
+        <div class="row g-2">
+            <div class="col-md-6">
+              <input type="text" name="nama" value="<?= esc($nama ?? '') ?>" placeholder="Nama barang" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <select name="domisili" class="form-select">
+                <option value="">Domisili</option>
+                <!-- options -->
+              </select>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100" type="submit">Cari <i class="bi bi-search"></i></button>
+            </div>
+        </div>
+    </form>
+</div><br>
+
 <!-- Table with stripped rows -->
 <div class="row">
     <?php foreach ($product as $key => $item) : ?>
@@ -20,6 +39,7 @@ if (session()->getFlashData('success')) {
             echo form_hidden('id', $item['id']);
             echo form_hidden('nama', $item['nama']);
             echo form_hidden('harga', $item['harga']);
+            echo form_hidden('kontak', $item['kontak'] ?? '');
             echo form_hidden('foto', $item['foto']);
             ?>
             <div class="card h-100">
@@ -27,7 +47,7 @@ if (session()->getFlashData('success')) {
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $item['nama'] ?></h5>
                     <p class="mb-1"><strong>Harga: </strong><?php echo number_to_currency($item['harga'], 'IDR') ?></p>
-                    <p class="mb-1"><strong>Kontak: </strong></p>
+                    <p class="mb-1"><strong>Kontak: </strong><?php echo $item['kontak'] ?></p>
                     <p class="mb-1"><strong>Domisili: </strong></p>
                 </div>
                 <div class="card-footer"></div>
