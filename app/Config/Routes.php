@@ -7,8 +7,10 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-$routes->get('login', 'AuthController::login');
-$routes->post('login', 'AuthController::login');
+$routes->get('register', 'AuthController::register', ['filter' => 'guest']);
+$routes->post('register', 'AuthController::register', ['filter' => 'guest']);
+$routes->get('login', 'AuthController::login', ['filter' => 'guest']);
+$routes->post('login', 'AuthController::login', ['filter' => 'guest']);
 $routes->get('logout', 'AuthController::logout');
 
 $routes->group('produk', ['filter' => 'auth'], function ($routes) { 

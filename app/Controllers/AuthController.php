@@ -15,6 +15,11 @@ class AuthController extends BaseController
         $this->user = new UserModel();
     }
 
+    public function register()
+    {
+        echo view('v_register'); // buat view dengan isi NiceAdmin pages-register.html lalu sesuaikan action form ke Auth::doRegister
+    }
+
     public function login()
     {
     if ($this->request->getPost()) {
