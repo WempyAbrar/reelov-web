@@ -22,10 +22,10 @@
                     <p class="text-center small">Masukkan detail pribadi untuk membuat akun</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form action="<?= base_url('/register') ?>" method="post" class="row g-3 needs-validation" novalidate>
                     <div class="col-12">
                       <label for="yourName" class="form-label">Nama Anda</label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
+                      <input type="text" name="nama_lengkap" class="form-control" id="yourName" required>
                       <div class="invalid-feedback">Please, enter your name!</div>
                     </div>
 

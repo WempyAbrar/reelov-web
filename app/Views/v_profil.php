@@ -112,13 +112,13 @@ if (session()->getFlashData('failed')) {
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" name="nama" class="form-control" id="nama" value="<?= $produk['nama'] ?>" placeholder="Nama Barang" required>
+                        <input type="text" name="nama" class="form-control" id="nama" value="<?= esc($produk['nama']) ?>" placeholder="Nama Barang" required>
                     </div>
                     <div class="form-group">
                         <label for="kategori">Kategori</label>
                         <div>
                           <select class="form-select" name="kategori" id="kategori" aria-label="Default select example">
-                            <option selected><?= $produk['kategori'] ?></option>
+                            <option selected><?= esc($produk['kategori']) ?></option>
                             <option value="Pakaian">Pakaian</option>
                             <option value="Elektronik">Elektronik</option>
                             <option value="Aksesoris">Aksesoris</option>
@@ -130,15 +130,15 @@ if (session()->getFlashData('failed')) {
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
-                        <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" style="height: 100px" required><?= $produk['deskripsi'] ?></textarea>
+                        <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" style="height: 100px" required><?= esc($produk['deskripsi']) ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="harga">Harga</label>
-                        <input type="text" name="harga" class="form-control" id="harga" value="<?= $produk['harga'] ?>" placeholder="Harga Barang" required>
+                        <input type="text" name="harga" class="form-control" id="harga" value="<?= esc($produk['harga']) ?>" placeholder="Harga Barang" required>
                     </div>
                     <div class="form-group">
                         <label for="kontak">Kontak</label>
-                        <input type="text" name="kontak" class="form-control" id="kontak" value="<?= $produk['kontak'] ?>" placeholder="Kontak Pemilik" required>
+                        <input type="text" name="kontak" class="form-control" id="kontak" value="<?= esc($produk['kontak']) ?>" placeholder="Kontak Pemilik" required>
                     </div>
                     <img src="<?php echo base_url() . "img/" . $produk['foto'] ?>" width="100px">
                     <div class="form-check">
@@ -186,28 +186,21 @@ if (session()->getFlashData('failed')) {
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                        <input name="nama_lengkap" type="text" class="form-control" id="fullName" value="<?= esc(session()->get('nama_lengkap') ?? '') ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Address" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
-                      </div>
-                    </div>  
-
-                    <div class="row mb-3">
                       <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                        <input name="email" type="email" class="form-control" id="Email" value="<?= esc(session()->get('email') ?? '') ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">No.Hp/WA</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
+                        <input name="phone" type="text" class="form-control" id="Phone" value="+62">
                       </div>
                     </div>
 

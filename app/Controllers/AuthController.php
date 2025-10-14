@@ -17,7 +17,30 @@ class AuthController extends BaseController
 
     public function register()
     {
-        echo view('v_register'); // buat view dengan isi NiceAdmin pages-register.html lalu sesuaikan action form ke Auth::doRegister
+    if ($post = $this->request->getPost()) {
+        $data = [
+            'nama_lengkap' => $post['nama_lengkap'],
+            'username' => $post['username'],
+            'email' => $post['email'],
+            'password' => $post['password'],
+            'created_at' => date("Y-m-d H:i:s")
+        ];
+
+        if (!$this->validate([
+            'nama_lengkap' => 'required',
+            'username' => 'required|is_unique[user.username]',
+            'email' => 'required|valid_email|is_unique[user.email]',
+            'password' => 'required|min_length[7]'
+        ])) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $this->user->insert($data);
+        session()->setFlashdata('success','Akun berhasil dibuat. Silakan login.');
+        return redirect()->to('/login'); // login route harus ada
+    }
+
+    return view('v_register'); 
     }
 
     public function login()
@@ -25,7 +48,7 @@ class AuthController extends BaseController
     if ($this->request->getPost()) {
         $rules = [
             'username' => 'required|min_length[6]',
-            'password' => 'required|min_length[7]|numeric',
+            'password' => 'required|min_length[7]',
         ];
 
         if ($this->validate($rules)) {
@@ -37,7 +60,10 @@ class AuthController extends BaseController
             if ($dataUser) {
                 if (password_verify($password, $dataUser['password'])) {
                     session()->set([
+                        'user_id' => $dataUser['id'],
                         'username' => $dataUser['username'],
+                        'email' => $dataUser['email'],
+                        'nama_lengkap' => $dataUser['nama_lengkap'],
                         'role' => $dataUser['role'],
                         'isLoggedIn' => TRUE
                     ]);
