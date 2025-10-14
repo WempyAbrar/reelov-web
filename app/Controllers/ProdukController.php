@@ -12,6 +12,7 @@ class ProdukController extends BaseController
     function __construct()
     {
         $this->product = new ProductModel();
+        helper('session');
     }
 
     public function index()
@@ -24,15 +25,18 @@ class ProdukController extends BaseController
 
     public function create()
     {
+        $session = session();
         $dataFoto = $this->request->getFile('foto');
 
         $dataForm = [
+            'user_id' => $session->get('user_id'),
             'nama' => $this->request->getPost('nama'),
             'kategori' => $this->request->getPost('kategori'),
             'deskripsi' => $this->request->getPost('deskripsi'),
             'harga' => $this->request->getPost('harga'),
             'kontak' => $this->request->getPost('kontak'),
             'domisili' => $this->request->getPost('domisili'),
+            'domisili_nama' => $this->request->getPost('domisili_nama'),
             'created_at' => date("Y-m-d H:i:s")
         ];
 

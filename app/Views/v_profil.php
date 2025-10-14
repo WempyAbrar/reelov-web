@@ -312,6 +312,7 @@ if (session()->getFlashData('failed')) {
                     <div class="form-group">
                         <label for="domisili">Domisili</label>
                         <select type="text" class="form-control" id="domisili" name="domisili" required></select>
+                        <input type="hidden" name="domisili_nama" id="domisili_nama">
                     </div>
                     <div class="form-group">
                         <label for="foto">Foto</label>
@@ -358,7 +359,13 @@ $(document).ready(function() {
     minimumInputLength: 3,
     allowClear: true,
     dropdownParent: $('#addModal')
-    });  
+    });
+    
+    $('#domisili').on('select2:select', function (e) {
+    var data = e.params.data;
+    console.log('Dipilih:', data.text); // debug
+    $('#domisili_nama').val(data.text); // isi input hidden
+    });
 });
 </script>
 <?= $this->endSection() ?>

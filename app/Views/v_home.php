@@ -12,16 +12,13 @@ if (session()->getFlashData('success')) {
 ?>
 
 <div class="search-bar">
-    <form method="get" action="">
+    <form method="get" action="<?= base_url('/') ?>">
         <div class="row g-2">
             <div class="col-md-6">
               <input type="text" name="nama" value="<?= esc($nama ?? '') ?>" placeholder="Nama barang" class="form-control">
             </div>
             <div class="col-md-4">
-              <select name="domisili" class="form-select">
-                <option value="">Domisili</option>
-                <!-- options -->
-              </select>
+              <input type="text" name="domisili" value="<?= esc($domisili_nama ?? '') ?>" placeholder="Domisili (Kecamatan)" class="form-control">
             </div>
             <div class="col-md-2">
               <button class="btn btn-primary w-100" type="submit">Cari <i class="bi bi-search"></i></button>
@@ -32,7 +29,7 @@ if (session()->getFlashData('success')) {
 
 <!-- Table with stripped rows -->
 <div class="row">
-    <?php foreach ($product as $key => $item) : ?>
+    <?php foreach ($produk as $key => $item) : ?>
         <div class="col-md-4 mb-3">
             <?= form_open('keranjang') ?>
             <?php
@@ -41,6 +38,7 @@ if (session()->getFlashData('success')) {
             echo form_hidden('harga', $item['harga']);
             echo form_hidden('kontak', $item['kontak'] ?? '');
             echo form_hidden('domisili', $item['domisili'] ?? '');
+            echo form_hidden('domisili_nama', $item['domisili_nama'] ?? '');
             echo form_hidden('foto', $item['foto']);
             ?>
             <div class="card h-100">
@@ -49,7 +47,7 @@ if (session()->getFlashData('success')) {
                     <h5 class="card-title"><?php echo $item['nama'] ?></h5>
                     <p class="mb-1"><strong>Harga: </strong><?php echo number_to_currency($item['harga'], 'IDR') ?></p>
                     <p class="mb-1"><strong>Kontak: </strong><?php echo $item['kontak'] ?></p>
-                    <p class="mb-1"><strong>Domisili: </strong><?php echo $item['domisili'] ?></p>
+                    <p class="mb-1"><strong>Domisili: </strong><?php echo $item['domisili_nama'] ?></p>
                 </div>
                 <div class="card-footer"></div>
             </div>

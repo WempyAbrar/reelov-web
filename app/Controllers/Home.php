@@ -13,9 +13,25 @@ class Home extends BaseController
     }
     public function index()
     {
-        $product = $this->product->findAll();
-        $data['product'] = $product;
+        $produkModel = new ProductModel();
 
-        return view('v_home', $data);
+        // Ambil parameter GET
+        $nama = $this->request->getGet('nama');
+        $domisili = $this->request->getGet('domisili');
+
+        // Jika ada pencarian, pakai filter
+        if (!empty($nama) || !empty($domisili)) {
+        $produk = $produkModel->searchProducts($nama, $domisili);
+        } else {
+        // Kalau tidak ada pencarian, tampilkan semua produk
+        $produk = $produkModel->findAll();
+        }
+
+        // Kirim data ke view
+        return view('v_home', [
+        'produk' => $produk,
+        'nama' => $nama,
+        'domisili_nama' => $domisili
+        ]);
     }
 }
