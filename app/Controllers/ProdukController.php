@@ -43,7 +43,7 @@ class ProdukController extends BaseController
 
         $this->product->insert($dataForm);
 
-        return redirect('produk')->with('success', 'Data Berhasil Ditambah');
+        return redirect('profil')->with('success', 'Data Berhasil Ditambah');
     } 
 
     public function edit($id)
@@ -75,7 +75,7 @@ class ProdukController extends BaseController
 
         $this->product->update($id, $dataForm);
 
-        return redirect('produk')->with('success', 'Data Berhasil Diubah');
+        return redirect('profil')->with('success', 'Data Berhasil Diubah');
     }
 
     public function delete($id)
@@ -88,7 +88,7 @@ class ProdukController extends BaseController
 
         $this->product->delete($id);
 
-        return redirect('produk')->with('success', 'Data Berhasil Dihapus');
+        return redirect('profil')->with('success', 'Data Berhasil Dihapus');
     }
 
     /*public function download()

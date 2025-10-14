@@ -1,3 +1,6 @@
+<?php
+/* ---- START NONAKTIF SEMENTARA ----
+
 <?= $this->extend('layout') ?>
 <?= $this->section('content') ?> 
 <?php
@@ -70,11 +73,11 @@ if (session()->getFlashData('failed')) {
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">Nama</label>
+                        <label for="nama">Nama</label>
                         <input type="text" name="nama" class="form-control" id="nama" value="<?= $produk['nama'] ?>" placeholder="Nama Barang" required>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 col-form-label">Kategori</label>
+                        <label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
                         <div class="col-sm-10">
                           <select class="form-select" name="kategori" id="kategori" aria-label="Default select example">
                             <option selected><?= $produk['kategori'] ?></option>
@@ -88,15 +91,15 @@ if (session()->getFlashData('failed')) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name">Deskripsi</label>
+                        <label for="deskripsi">Deskripsi</label>
                         <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" style="height: 100px" required><?= $produk['deskripsi'] ?></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="name">Harga</label>
+                        <label for="harga">Harga</label>
                         <input type="text" name="harga" class="form-control" id="harga" value="<?= $produk['harga'] ?>" placeholder="Harga Barang" required>
                     </div>
                     <div class="form-group">
-                        <label for="name">Kontak</label>
+                        <label for="kontak">Kontak</label>
                         <input type="text" name="kontak" class="form-control" id="kontak" value="<?= $produk['kontak'] ?>" placeholder="Kontak Pemilik" required>
                     </div>
                     <img src="<?php echo base_url() . "img/" . $produk['foto'] ?>" width="100px">
@@ -107,7 +110,7 @@ if (session()->getFlashData('failed')) {
                         </label>
                     </div>
                     <div class="form-group">
-                        <label for="name">Foto</label>
+                        <label for="foto">Foto</label>
                         <input type="file" class="form-control" id="foto" name="foto">
                     </div>
                 </div>
@@ -140,11 +143,11 @@ if (session()->getFlashData('failed')) {
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">Nama</label>
+                        <label for="nama">Nama</label>
                         <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Barang" required>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 col-form-label">Kategori</label>
+                        <label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
                         <div class="col-sm-10">
                           <select class="form-select" name="kategori" id="kategori" aria-label="Default select example" required>
                             <option selected>Pilih kategori barang</option>
@@ -158,19 +161,19 @@ if (session()->getFlashData('failed')) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name">Deskripsi</label>
+                        <label for="deskripsi">Deskripsi</label>
                         <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" style="height: 100px" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="name">Harga</label>
+                        <label for="harga">Harga</label>
                         <input type="text" name="harga" class="form-control" id="harga" placeholder="Harga Barang" required>
                     </div>
                     <div class="form-group">
-                        <label for="name">Kontak</label>
+                        <label for="kontak">Kontak</label>
                         <input type="text" name="kontak" class="form-control" id="kontak" placeholder="Kontak Pemilik" required>
                     </div>
                     <div class="form-group">
-                        <label for="name">Foto</label>
+                        <label for="foto">Foto</label>
                         <input type="file" class="form-control" id="foto" name="foto">
                     </div>
                 </div>
@@ -184,3 +187,6 @@ if (session()->getFlashData('failed')) {
 </div>
 <!-- Add Modal End -->
 <?= $this->endSection() ?>
+
+---- END NONAKTIF SEMENTARA ---- */
+?>

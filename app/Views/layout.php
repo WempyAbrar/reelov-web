@@ -73,7 +73,7 @@ if(uri_string()!=""){
       <div class="row">
         <div class="col-lg-12">
 
-          <div class="card wavy" style="background-color: #fffff0">
+          <div style="background-color: #fffff0">
             <br>
             <br>
             <br>
