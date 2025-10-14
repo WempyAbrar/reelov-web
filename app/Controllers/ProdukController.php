@@ -32,6 +32,7 @@ class ProdukController extends BaseController
             'deskripsi' => $this->request->getPost('deskripsi'),
             'harga' => $this->request->getPost('harga'),
             'kontak' => $this->request->getPost('kontak'),
+            'domisili' => $this->request->getPost('domisili'),
             'created_at' => date("Y-m-d H:i:s")
         ];
 

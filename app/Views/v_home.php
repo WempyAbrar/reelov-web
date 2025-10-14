@@ -40,6 +40,7 @@ if (session()->getFlashData('success')) {
             echo form_hidden('nama', $item['nama']);
             echo form_hidden('harga', $item['harga']);
             echo form_hidden('kontak', $item['kontak'] ?? '');
+            echo form_hidden('domisili', $item['domisili'] ?? '');
             echo form_hidden('foto', $item['foto']);
             ?>
             <div class="card h-100">
@@ -48,7 +49,7 @@ if (session()->getFlashData('success')) {
                     <h5 class="card-title"><?php echo $item['nama'] ?></h5>
                     <p class="mb-1"><strong>Harga: </strong><?php echo number_to_currency($item['harga'], 'IDR') ?></p>
                     <p class="mb-1"><strong>Kontak: </strong><?php echo $item['kontak'] ?></p>
-                    <p class="mb-1"><strong>Domisili: </strong></p>
+                    <p class="mb-1"><strong>Domisili: </strong><?php echo $item['domisili'] ?></p>
                 </div>
                 <div class="card-footer"></div>
             </div>

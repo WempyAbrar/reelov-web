@@ -98,7 +98,25 @@ class TransaksiController extends BaseController
     );
 
     $body = json_decode($response->getBody(), true); 
-    return $this->response->setJSON($body['data']);
+    $data = $body['data'];
+
+    //Filter agar tidak ada duplikasi kecamatan
+    $filtered = [];
+    $uniqueDistricts = [];
+
+    foreach ($data as $item) {
+        if (!in_array($item['district_name'], $uniqueDistricts)) {
+            $uniqueDistricts[] = $item['district_name'];
+            $filtered[] = [
+                'id' => $item['id'],
+                'district_name' => $item['district_name'],
+                'city_name' => $item['city_name'],
+                'province_name' => $item['province_name']
+            ];
+        }
+    }
+
+    return $this->response->setJSON($filtered);
     }
 
     public function getCost()

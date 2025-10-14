@@ -33,6 +33,9 @@ if(uri_string()!=""){
   <link href="<?= base_url()?>NiceAdmin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="<?= base_url()?>NiceAdmin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+  <!-- Select2 -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
   <!-- Template Main CSS File -->
   <link href="<?= base_url()?>NiceAdmin/assets/css/style.css" rel="stylesheet">
 
@@ -98,7 +101,6 @@ if(uri_string()!=""){
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Select2 -->
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
   <!-- Vendor JS Files -->

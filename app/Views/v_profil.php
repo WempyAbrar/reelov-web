@@ -317,6 +317,10 @@ if (session()->getFlashData('failed')) {
                         <input type="text" name="kontak" class="form-control" id="kontak" placeholder="Kontak Pemilik" required>
                     </div>
                     <div class="form-group">
+                        <label for="domisili">Domisili</label>
+                        <select type="text" class="form-control" id="domisili" name="domisili" required></select>
+                    </div>
+                    <div class="form-group">
                         <label for="foto">Foto</label>
                         <input type="file" class="form-control" id="foto" name="foto">
                     </div>
@@ -330,4 +334,38 @@ if (session()->getFlashData('failed')) {
     </div>
 </div>
 <!-- Add Modal End -->
+<?= $this->endSection() ?>
+
+<?= $this->section('script') ?>
+<script>
+$(document).ready(function() {
+    $('#domisili').select2({
+    placeholder: 'Ketik nama kecamatan...',
+    ajax: {
+        url: '<?= base_url('get-location') ?>',
+        dataType: 'json',
+        delay: 1500,
+        data: function (params) {
+            return {
+                search: params.term
+            };
+        },
+        processResults: function (data) {
+            return {
+                results: data.map(function(item) {
+                return {
+                    id: item.id,
+                    text: item.district_name + ", " + item.city_name + ", " + item.province_name
+                };
+                })
+            };
+        },
+        cache: true
+    },
+    minimumInputLength: 3,
+    allowClear: true,
+    dropdownParent: $('#addModal')
+    });  
+});
+</script>
 <?= $this->endSection() ?>

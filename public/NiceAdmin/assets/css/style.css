@@ -1246,3 +1246,27 @@ h6 {
   -webkit-mask: var(--mask);
           mask: var(--mask);
 }
+
+/*--------------------------------------------------------------
+# Select2
+--------------------------------------------------------------*/
+
+/* Pastikan Select2 full width di dalam modal */
+.select2-container {
+  width: 100% !important;
+}
+
+/* Supaya dropdown Select2 muncul di atas modal backdrop */
+.select2-container--open {
+  z-index: 9999 !important;
+}
+
+/* Biar label tidak terlalu mepet */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* Jika dropdownnya ketutup atau posisinya aneh, pakai ini */
+.select2-dropdown {
+  z-index: 99999 !important;
+}
