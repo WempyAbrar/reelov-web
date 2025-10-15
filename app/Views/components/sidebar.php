@@ -1,3 +1,4 @@
+  <?php $kategoriAktif = $_GET['kategori'] ?? ''; ?>
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar bg-danger-subtle">
 
@@ -10,33 +11,38 @@
           <i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/">
+          <li class="nav-item">
+            <a class="<?= $kategoriAktif == '' ? 'active' : '' ?>" href="<?= base_url('/') ?>">
+              <i class="bi bi-circle"></i><span>Semua Kategori</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="<?= $kategoriAktif == 'Pakaian' ? 'active' : '' ?>" href="<?= base_url('/?kategori=Pakaian') ?>">
               <i class="bi bi-circle"></i><span>Pakaian</span>
             </a>
           </li>
-          <li>
-            <a class="active" href="/">
+          <li class="nav-item">
+            <a class="<?= $kategoriAktif == 'Elektronik' ? 'active' : '' ?>" href="<?= base_url('/?kategori=Elektronik') ?>">
               <i class="bi bi-circle"></i><span>Elektronik</span>
             </a>
           </li>
-          <li>
-            <a href="/">
+          <li class="nav-item">
+            <a class="<?= $kategoriAktif == 'Aksesoris' ? 'active' : '' ?>" href="<?= base_url('/?kategori=Aksesoris') ?>">
               <i class="bi bi-circle"></i><span>Aksesoris</span>
             </a>
           </li>
-          <li>
-            <a href="/">
+          <li class="nav-item">
+            <a class="<?= $kategoriAktif == 'Buku' ? 'active' : '' ?>" href="<?= base_url('/?kategori=Buku') ?>">
               <i class="bi bi-circle"></i><span>Buku</span>
             </a>
           </li>
-          <li>
-            <a href="/">
+          <li class="nav-item">
+            <a class="<?= $kategoriAktif == 'Peralatan Rumah' ? 'active' : '' ?>" href="<?= base_url('/?kategori=Peralatan Rumah') ?>">
               <i class="bi bi-circle"></i><span>Peralatan Rumah</span>
             </a>
           </li>
-          <li>
-            <a href="/">
+          <li class="nav-item">
+            <a class="<?= $kategoriAktif == 'Lainnya' ? 'active' : '' ?>" href="<?= base_url('/?kategori=Lainnya') ?>">
               <i class="bi bi-circle"></i><span>Lainnya</span>
             </a>
           </li>

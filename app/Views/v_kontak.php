@@ -22,21 +22,21 @@ if (session()->getFlashData('success')) {
               <div class="info-box card">
                 <i class="bi bi-envelope"></i>
                 <h3>Email</h3>
-                <p>reelovid@gmail.com<br>shelyadesti@gmail.com</p>
+                <p>reelov.shop@gmail.com</p>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="info-box card">
                 <i class="bi bi-telephone"></i>
                 <h3>Telfon</h3>
-                <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                <p>+62 881 0256 21221</p>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="info-box card">
                 <i class="bi bi-instagram"></i>
                 <h3>Instagram</h3>
-                <p>@reelov.id</p>
+                <p>@reelov.shop</p>
               </div>
             </div>
           </div>

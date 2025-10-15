@@ -53,6 +53,7 @@ class ProdukController extends BaseController
 
     public function edit($id)
     {
+        $session = session();
         $dataProduk = $this->product->find($id);
 
         $dataForm = [
@@ -63,6 +64,10 @@ class ProdukController extends BaseController
             'kontak' => $this->request->getPost('kontak'),
             'updated_at' => date("Y-m-d H:i:s")
         ];
+
+        if (!$dataProduk || $dataProduk['user_id'] != $session->get('user_id')) {
+            return redirect()->back()->with('error','Tidak diizinkan.');
+        }
 
         if ($this->request->getPost('check') == 1) {
             if ($dataProduk['foto'] != '' and file_exists("img/" . $dataProduk['foto'] . "")) {
@@ -85,13 +90,16 @@ class ProdukController extends BaseController
 
     public function delete($id)
     {
+        $session = session();
         $dataProduk = $this->product->find($id);
 
         if ($dataProduk['foto'] != '' and file_exists("img/" . $dataProduk['foto'] . "")) {
             unlink("img/" . $dataProduk['foto']);
         }
 
+        if ($dataProduk && $dataProduk['user_id'] == $session->get('user_id')) {
         $this->product->delete($id);
+        }
 
         return redirect('profil')->with('success', 'Data Berhasil Dihapus');
     }

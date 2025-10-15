@@ -15,10 +15,19 @@ class ProfilController extends BaseController
         $this->product = new ProductModel();
     }
 
-    public function index() 
+    public function index()
     {
-        $product = $this->product->findAll();
-        $data['product'] = $product;
+        $produkModel = new ProductModel();
+
+        // Ambil user_id dari session
+        $userId = session()->get('user_id');
+
+        // Ambil hanya produk milik user yang sedang login
+        $produk = $produkModel->where('user_id', $userId)->findAll();
+
+        $data = [
+            'product' => $produk
+        ];
 
         return view('v_profil', $data);
     }

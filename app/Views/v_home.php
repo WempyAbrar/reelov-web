@@ -24,11 +24,15 @@ if (session()->getFlashData('success')) {
               <button class="btn btn-primary w-100" type="submit">Cari <i class="bi bi-search"></i></button>
             </div>
         </div>
+        <?php if (!empty($kategori_aktif)): ?>
+            <input type="hidden" name="kategori" value="<?= esc($kategori_aktif) ?>">
+        <?php endif; ?>
     </form>
 </div><br>
 
 <!-- Table with stripped rows -->
 <div class="row">
+  <?php if (!empty($produk)): ?>
     <?php foreach ($produk as $key => $item) : ?>
         <div class="col-md-4 mb-3">
             <?= form_open('keranjang') ?>
@@ -54,6 +58,9 @@ if (session()->getFlashData('success')) {
             <?= form_close() ?>
         </div>
     <?php endforeach ?>
+  <?php else: ?>
+    <p>Tidak ada produk ditemukan.</p><br><br><br>
+  <?php endif; ?>
 </div>
 <!-- End Table with stripped rows -->
 <?= $this->endSection() ?>

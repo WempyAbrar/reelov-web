@@ -13,25 +13,40 @@ class Home extends BaseController
     }
     public function index()
     {
-        $produkModel = new ProductModel();
+    $produkModel = new ProductModel();
 
-        // Ambil parameter GET
-        $nama = $this->request->getGet('nama');
-        $domisili = $this->request->getGet('domisili');
+    // Ambil parameter GET dari search bar dan sidebar
+    $nama = $this->request->getGet('nama');
+    $domisili = $this->request->getGet('domisili');
+    $kategori = $this->request->getGet('kategori');
 
-        // Jika ada pencarian, pakai filter
-        if (!empty($nama) || !empty($domisili)) {
-        $produk = $produkModel->searchProducts($nama, $domisili);
-        } else {
-        // Kalau tidak ada pencarian, tampilkan semua produk
-        $produk = $produkModel->findAll();
-        }
+    // Mulai query builder
+    $query = $produkModel;
 
-        // Kirim data ke view
-        return view('v_home', [
+    // Filter berdasarkan kategori (kalau ada)
+    if (!empty($kategori)) {
+        $query = $query->where('kategori', $kategori);
+    }
+
+    // Filter berdasarkan nama barang (kalau ada)
+    if (!empty($nama)) {
+        $query = $query->like('nama', $nama);
+    }
+
+    // Filter berdasarkan domisili (kalau ada)
+    if (!empty($domisili)) {
+        $query = $query->like('domisili_nama', $domisili);
+    }
+
+    // Jalankan query
+    $produk = $query->findAll();
+
+    // Kirim data ke view
+    return view('v_home', [
         'produk' => $produk,
         'nama' => $nama,
-        'domisili_nama' => $domisili
-        ]);
+        'domisili_nama' => $domisili,
+        'kategori_aktif' => $kategori
+    ]);
     }
 }
