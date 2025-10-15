@@ -45,6 +45,7 @@ if (session()->getFlashData('failed')) {
 
           <div class="card">
             <div class="card-body pt-3">
+              <div class="scroll-x">
               <!-- Bordered Tabs -->
               <ul class="nav nav-tabs nav-tabs-bordered">
 
@@ -61,9 +62,10 @@ if (session()->getFlashData('failed')) {
                 </li>
 
               </ul>
+              </div>
               <div class="tab-content pt-2">
 
-                <div class="tab-pane fade show active profile-product" id="profile-product">
+                <div class="tab-pane fade show active scroll-x profile-product" id="profile-product">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
     Tambah Barang
 </button>
@@ -367,5 +369,16 @@ $(document).ready(function() {
     $('#domisili_nama').val(data.text); // isi input hidden
     });
 });
+
+const modals = document.querySelectorAll('.modal');
+modals.forEach(modal => {
+  modal.addEventListener('show.bs.modal', () => {
+    document.querySelectorAll('.wavy').forEach(el => el.style.webkitMask = 'none');
+  });
+  modal.addEventListener('hidden.bs.modal', () => {
+    document.querySelectorAll('.wavy').forEach(el => el.style.webkitMask = '');
+  });
+});
+
 </script>
 <?= $this->endSection() ?>

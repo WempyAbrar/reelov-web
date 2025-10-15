@@ -40,6 +40,7 @@ if (session()->getFlashData('success')) {
             echo form_hidden('id', $item['id']);
             echo form_hidden('nama', $item['nama']);
             echo form_hidden('harga', $item['harga']);
+            echo form_hidden('deskripsi', $item['deskripsi']);
             echo form_hidden('kontak', $item['kontak'] ?? '');
             echo form_hidden('domisili', $item['domisili'] ?? '');
             echo form_hidden('domisili_nama', $item['domisili_nama'] ?? '');
@@ -49,11 +50,23 @@ if (session()->getFlashData('success')) {
                 <img src="<?php echo base_url() . "img/" . $item['foto'] ?>" class="card-img-top" style="max-height:300px; object-fit:cover" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $item['nama'] ?></h5>
-                    <p class="mb-1"><strong>Harga: </strong><?php echo number_to_currency($item['harga'], 'IDR') ?></p>
+                    <p class="mb-1"><strong>Harga: </strong>Rp <?= number_format($item['harga'], 0, ',', '.'); ?></p>
                     <p class="mb-1"><strong>Kontak: </strong><?php echo $item['kontak'] ?></p>
                     <p class="mb-1"><strong>Domisili: </strong><?php echo $item['domisili_nama'] ?></p>
                 </div>
-                <div class="card-footer"></div>
+                <div class="card-footer text-center">
+                    <button 
+                        type="button" 
+                        class="btn btn-primary btn-sm btn-deskripsi"
+                        data-nama="<?= esc($item['nama']); ?>"
+                        data-harga="Rp <?= number_format($item['harga'], 0, ',', '.'); ?>"
+                        data-kategori="<?= esc($item['kategori']); ?>"
+                        data-deskripsi="<?= esc($item['deskripsi']); ?>"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#deskripsiModal">
+                        <i class="bi bi-card-text"></i> Deskripsi
+                    </button>
+                </div>
             </div>
             <?= form_close() ?>
         </div>
@@ -63,4 +76,58 @@ if (session()->getFlashData('success')) {
   <?php endif; ?>
 </div>
 <!-- End Table with stripped rows -->
+
+<!-- Modal Deskripsi Dinamis -->
+<div class="modal fade" id="deskripsiModal" tabindex="-1" aria-labelledby="deskripsiLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title" id="deskripsiLabel">Deskripsi Produk</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6 id="modalNama"></h6>
+        <p><strong>Harga:</strong> <span id="modalHarga"></span></p>
+        <p><strong>Kategori:</strong> <span id="modalKategori"></span></p>
+        <hr>
+        <p id="modalDeskripsi"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?= $this->endSection() ?>
+
+<?= $this->section('script') ?>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const buttons = document.querySelectorAll('.btn-deskripsi');
+  const modalNama = document.getElementById('modalNama');
+  const modalHarga = document.getElementById('modalHarga');
+  const modalKategori = document.getElementById('modalKategori');
+  const modalDeskripsi = document.getElementById('modalDeskripsi');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      modalNama.textContent = btn.getAttribute('data-nama');
+      modalHarga.textContent = btn.getAttribute('data-harga');
+      modalKategori.textContent = btn.getAttribute('data-kategori');
+      modalDeskripsi.textContent = btn.getAttribute('data-deskripsi');
+    });
+  });
+});
+
+const modals = document.querySelectorAll('.modal');
+modals.forEach(modal => {
+  modal.addEventListener('show.bs.modal', () => {
+    document.querySelectorAll('.wavy').forEach(el => el.style.webkitMask = 'none');
+  });
+  modal.addEventListener('hidden.bs.modal', () => {
+    document.querySelectorAll('.wavy').forEach(el => el.style.webkitMask = '');
+  });
+});
+
+</script>
 <?= $this->endSection() ?>

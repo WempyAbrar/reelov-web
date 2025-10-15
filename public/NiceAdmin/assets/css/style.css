@@ -1270,3 +1270,22 @@ h6 {
 .select2-dropdown {
   z-index: 99999 !important;
 }
+
+/*--------------------------------------------------------------
+# Horizintal Scroll
+--------------------------------------------------------------*/
+
+/* Biar tab dan tabel bisa discroll horizontal di layar kecil */
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* biar smooth di iPhone */
+}
+
+.scroll-x .nav-tabs {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.scroll-x table {
+  min-width: 600px; /* biar bisa geser */
+}
