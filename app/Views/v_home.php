@@ -35,7 +35,6 @@ if (session()->getFlashData('success')) {
   <?php if (!empty($produk)): ?>
     <?php foreach ($produk as $key => $item) : ?>
         <div class="col-md-4 mb-3">
-            <?= form_open('keranjang') ?>
             <?php
             echo form_hidden('id', $item['id']);
             echo form_hidden('nama', $item['nama']);
@@ -55,16 +54,38 @@ if (session()->getFlashData('success')) {
                     <p class="mb-1"><strong>Domisili: </strong><?php echo $item['domisili_nama'] ?></p>
                 </div>
                 <div class="card-footer text-center">
+                  <?php if (!empty($item['wa'])): ?>
+                    <a href="<?= esc($item['wa']); ?>" target="_blank" class="btn btn-success btn-sm">
+                      <i class="bi bi-whatsapp"></i>
+                    </a>
+                  <?php endif; ?>
+
+                  <?php if (!empty($item['fb'])): ?>
+                    <a href="<?= esc($item['fb']); ?>" target="_blank" class="btn btn-primary btn-sm">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                  <?php endif; ?>
+
+                  <?php if (!empty($item['ig'])): ?>
+                    <a href="<?= esc($item['ig']); ?>" target="_blank" class="btn btn-danger btn-sm">
+                      <i class="bi bi-instagram"></i>
+                    </a>
+                  <?php endif; ?>
                     <button 
                         type="button" 
-                        class="btn btn-primary btn-sm btn-deskripsi"
+                        class="btn text-light btn-sm btn-deskripsi"
+                        style="background-color: #2e324d;"
                         data-nama="<?= esc($item['nama']); ?>"
                         data-harga="Rp <?= number_format($item['harga'], 0, ',', '.'); ?>"
                         data-kategori="<?= esc($item['kategori']); ?>"
                         data-deskripsi="<?= esc($item['deskripsi']); ?>"
+                        data-username="<?= esc($item['username'] ?? ''); ?>"
+                        data-wa="<?= esc($item['wa'] ?? ''); ?>"
+                        data-fb="<?= esc($item['fb'] ?? ''); ?>"
+                        data-ig="<?= esc($item['ig'] ?? ''); ?>"
                         data-bs-toggle="modal" 
                         data-bs-target="#deskripsiModal">
-                        <i class="bi bi-card-text"></i> Deskripsi
+                        <i class="bi bi-card-text"></i> Detail
                     </button>
                 </div>
             </div>
@@ -78,17 +99,18 @@ if (session()->getFlashData('success')) {
 <!-- End Table with stripped rows -->
 
 <!-- Modal Deskripsi Dinamis -->
-<div class="modal fade" id="deskripsiModal" tabindex="-1" aria-labelledby="deskripsiLabel" aria-hidden="true">
+<div class="modal fade" id="deskripsiModal" tabindex="-1" aria-labelledby="deskripsiLabel">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header bg-info text-white">
-        <h5 class="modal-title" id="deskripsiLabel">Deskripsi Produk</h5>
+      <div class="modal-header bg-danger-subtle text-white">
+        <h5 class="modal-title text-dark" id="deskripsiLabel">Deskripsi Produk</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <h6 id="modalNama"></h6>
         <p><strong>Harga:</strong> <span id="modalHarga"></span></p>
         <p><strong>Kategori:</strong> <span id="modalKategori"></span></p>
+        <p><strong>Penjual:</strong> @<span id="modalUsername"></span></p>
         <hr>
         <p id="modalDeskripsi"></p>
       </div>
@@ -104,10 +126,13 @@ if (session()->getFlashData('success')) {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const buttons = document.querySelectorAll('.btn-deskripsi');
+
   const modalNama = document.getElementById('modalNama');
   const modalHarga = document.getElementById('modalHarga');
   const modalKategori = document.getElementById('modalKategori');
   const modalDeskripsi = document.getElementById('modalDeskripsi');
+  const modalUsername = document.getElementById('modalUsername');
+  const modalSosmed = document.getElementById('modalSosmed');
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -115,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
       modalHarga.textContent = btn.getAttribute('data-harga');
       modalKategori.textContent = btn.getAttribute('data-kategori');
       modalDeskripsi.textContent = btn.getAttribute('data-deskripsi');
+      modalUsername.textContent = btn.getAttribute('data-username');
     });
   });
 });

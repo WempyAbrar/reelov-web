@@ -11,35 +11,37 @@ class Home extends BaseController
     {
         $this->product = new ProductModel();
     }
+
     public function index()
     {
-    $produkModel = new ProductModel();
+    $db = \Config\Database::connect();
+    $builder = $db->table('product');
+    $builder->select('product.*, user.username, user.wa, user.fb, user.ig');
+    $builder->join('user', 'user.id = product.user_id', 'left');
 
     // Ambil parameter GET dari search bar dan sidebar
     $nama = $this->request->getGet('nama');
     $domisili = $this->request->getGet('domisili');
     $kategori = $this->request->getGet('kategori');
 
-    // Mulai query builder
-    $query = $produkModel;
-
     // Filter berdasarkan kategori (kalau ada)
     if (!empty($kategori)) {
-        $query = $query->where('kategori', $kategori);
+        $builder->where('product.kategori', $kategori);
     }
 
     // Filter berdasarkan nama barang (kalau ada)
     if (!empty($nama)) {
-        $query = $query->like('nama', $nama);
+        $builder->like('product.nama', $nama);
     }
 
     // Filter berdasarkan domisili (kalau ada)
     if (!empty($domisili)) {
-        $query = $query->like('domisili_nama', $domisili);
+        $builder->like('product.domisili_nama', $domisili);
     }
 
     // Jalankan query
-    $produk = $query->findAll();
+    $query = $builder->get();
+    $produk = $query->getResultArray();
 
     // Kirim data ke view
     return view('v_home', [

@@ -15,12 +15,28 @@ class ProdukController extends BaseController
         helper('session');
     }
 
-    public function index()
+    /*public function index()
     {
         $product = $this->product->findAll();
         $data['product'] = $product;
 
         return view('v_produk', $data);
+    }*/
+
+    public function index()
+    {
+        $db = \Config\Database::connect();
+
+        $builder = $db->table('product');
+        $builder->select('product.*, user.username, user.wa, user.fb, user.ig');
+        $builder->join('user', 'user.id = product.user_id', 'left');
+        $query = $builder->get();
+        $produk = $query->getResultArray();
+        
+
+        $data['produk'] = $produk;
+
+        return view('v_home', $data);
     }
 
     public function create()

@@ -32,9 +32,17 @@ if (session()->getFlashData('failed')) {
               <h2><?= session()->get('username'); ?></h2>
               <h3>Penjual</h3>
               <div class="social-links mt-2">
-                <a href="#" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <?php if (!empty($user['wa'])) : ?>
+                  <a href="<?= esc($user['wa']) ?>" target="_blank" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
+                <?php endif; ?>
+
+                <?php if (!empty($user['fb'])) : ?>
+                  <a href="<?= esc($user['fb']) ?>" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+                <?php endif; ?>
+
+                <?php if (!empty($user['ig'])) : ?>
+                  <a href="<?= esc($user['ig']) ?>" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -173,7 +181,7 @@ if (session()->getFlashData('failed')) {
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form>
+                  <form action="<?= base_url('profil/update') ?>" method="post">
                     <div class="row mb-3">
                       <label class="col-md-4 col-lg-3 col-form-label">Gambar Profil</label>
                       <div class="col-md-8 col-lg-9">
@@ -188,35 +196,35 @@ if (session()->getFlashData('failed')) {
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="nama_lengkap" type="text" class="form-control" id="fullName" value="<?= esc(session()->get('nama_lengkap') ?? '') ?>">
+                        <input name="nama_lengkap" type="text" class="form-control" id="fullName" value="<?= esc($user['nama_lengkap'] ?? '') ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="<?= esc(session()->get('email') ?? '') ?>">
+                        <input name="email" type="email" class="form-control" id="Email" value="<?= esc($user['email'] ?? '') ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">No.Hp/WA</label>
+                      <label for="Whatsapp" class="col-md-4 col-lg-3 col-form-label">Link Whatsapp</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="+62">
+                        <input name="wa" type="text" class="form-control" id="Whatsapp" value="<?= esc($user['wa'] ?? '') ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Profil Facebook</label>
+                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Link Facebook</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
+                        <input name="fb" type="text" class="form-control" id="Facebook" value="<?= esc($user['fb'] ?? '') ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Profil Instagram</label>
+                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Link Instagram</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
+                        <input name="ig" type="text" class="form-control" id="Instagram" value="<?= esc($user['ig'] ?? '') ?>">
                       </div>
                     </div>
 

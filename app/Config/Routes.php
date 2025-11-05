@@ -13,19 +13,17 @@ $routes->get('login', 'AuthController::login', ['filter' => 'guest']);
 $routes->post('login', 'AuthController::login', ['filter' => 'guest']);
 $routes->get('logout', 'AuthController::logout');
 
+$routes->group('profil', ['filter' => 'auth'], function ($routes) {
+    $routes->get('', 'ProfilController::index');
+    $routes->post('update', 'ProfilController::update');
+});
+
 $routes->group('produk', ['filter' => 'auth'], function ($routes) { 
     $routes->get('', 'ProdukController::index');
     $routes->post('', 'ProdukController::create');
     $routes->post('edit/(:any)', 'ProdukController::edit/$1');
     $routes->get('delete/(:any)', 'ProdukController::delete/$1');
     //$routes->get('download', 'ProdukController::download');
-});
-
-$routes->group('profil', ['filter' => 'auth'], function ($routes) {
-    $routes->get('', 'ProfilController::index');
-    $routes->post('', 'ProdukController::create');
-    $routes->post('edit/(:any)', 'ProdukController::edit/$1');
-    $routes->get('delete/(:any)', 'ProdukController::delete/$1');
 });
 
 $routes->get('kontak', 'KontakController::index');
